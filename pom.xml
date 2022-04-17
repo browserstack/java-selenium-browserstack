@@ -10,7 +10,7 @@
 
   <name>java-browserstack</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>http://www.browserstack.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -92,4 +92,22 @@
       </plugins>
     </pluginManagement>
   </build>
+  <profiles>
+      <profile>
+          <id>single</id>
+          <build>
+              <plugins>
+                  <plugin>
+                      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-surefire-plugin</artifactId>
+                      <configuration>
+                          <includes>
+                              <include>com/browserstack/app/JavaSample.java</include>
+                          </includes>
+                      </configuration>
+                  </plugin>
+              </plugins>
+          </build>
+      </profile>
+  </profiles>
 </project>
