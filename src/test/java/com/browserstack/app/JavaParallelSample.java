@@ -1,5 +1,5 @@
 package com.browserstack.app;
-
+import java.util.*;  
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -12,66 +12,21 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-class DeviceOne implements Runnable {
-	public void run() {
-		Hashtable<String, String> capsHashtable = new Hashtable<String, String>();
-		capsHashtable.put("deviceName", "iPhone 12 Pro");
-		capsHashtable.put("realMobile", "true");
-		JavaParallelSample deviceOne = new JavaParallelSample();
-		deviceOne.executeTest(capsHashtable, "Thread 1");
-	}
-}
-class DeviceTwo implements Runnable {
-	public void run() {
-		Hashtable<String, String> capsHashtable = new Hashtable<String, String>();
-		capsHashtable.put("deviceName", "Samsung Galaxy S20");
-		capsHashtable.put("realMobile", "true");
-		JavaParallelSample deviceTwo = new JavaParallelSample();
-		deviceTwo.executeTest(capsHashtable, "Thread 2");
-	}
-}
-class DeviceThree implements Runnable {
-	public void run() {
-		Hashtable<String, String> capsHashtable = new Hashtable<String, String>();
-		capsHashtable.put("os", "OS X");
-		JavaParallelSample deviceThree = new JavaParallelSample();
-		deviceThree.executeTest(capsHashtable, "Thread 3");
-	}
-}
-class DeviceFour implements Runnable {
-	public void run() {
-		Hashtable<String, String> capsHashtable = new Hashtable<String, String>();
-		capsHashtable.put("os", "OS X");
-		JavaParallelSample deviceFour = new JavaParallelSample();
-		deviceFour.executeTest(capsHashtable, "Thread 4");
-  	}
-}
-class DeviceFive implements Runnable {
-	public void run() {
-		Hashtable<String, String> capsHashtable = new Hashtable<String, String>();
-		capsHashtable.put("os", "Windows");
-		JavaParallelSample deviceFive = new JavaParallelSample();
-		deviceFive.executeTest(capsHashtable, "thread 5");
-  	}
-}
-public class JavaParallelSample {
-	public static final String USERNAME = "rutvikchandla_2MEern";
-	public static final String AUTOMATE_KEY = "AXHzyg34Qr81Nep231pu";
+
+class ParallelTest implements Runnable {
+  public static final String USERNAME = "BROWSERSTACK_USERNAME";
+	public static final String AUTOMATE_KEY = "BROWSERSTACK_ACCESS_KEY";
 	public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
-	public static void main(String[] args) throws Exception {
-		Thread threadOne = new Thread(new DeviceOne());
-		threadOne.start();
-		Thread threadTwo = new Thread(new DeviceTwo());
-		threadTwo.start();
-		Thread threadThree = new Thread(new DeviceThree());
-		threadThree.start();
-		Thread threadFour = new Thread(new DeviceFour());
-		threadFour.start();
-		Thread threadFive = new Thread(new DeviceFive());
-		threadFive.start();
-		}
-	public void executeTest(Hashtable<String, String> capsHashtable, String sessionName) {
-		DesiredCapabilities caps = new DesiredCapabilities();
+  Hashtable<String, String> capsHashtable;
+  String sessionName;
+
+  ParallelTest(Hashtable<String, String> cap, String sessionString){
+    capsHashtable = cap;
+    sessionName = sessionString;
+  }
+
+  public void run() {
+    DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setCapability("bstack:options", capsHashtable);
 		caps.setCapability("sessionName", sessionName); // test name
 		caps.setCapability("buildName", "BStack-[Java] Sample buildName"); // CI/CD job or build name
@@ -105,6 +60,38 @@ public class JavaParallelSample {
 			} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-	}
+  }
 }
 
+public class JavaParallelSample {
+	public static void main(String[] args) throws Exception {
+		List<Hashtable<String, String>> caps = new ArrayList<Hashtable<String, String>>();
+
+    //device 1
+    Hashtable<String, String> cap1 = new Hashtable<String, String>();
+		cap1.put("deviceName", "iPhone 12 Pro");
+		cap1.put("realMobile", "true");
+    caps.add(cap1);
+
+    //device 2
+    Hashtable<String, String> cap2 = new Hashtable<String, String>();
+		cap2.put("deviceName", "Samsung Galaxy S20");
+		cap2.put("realMobile", "true");
+    caps.add(cap2);
+
+    //device 3
+    Hashtable<String, String> cap3 = new Hashtable<String, String>();
+		cap3.put("os", "OS X");
+    caps.add(cap3);
+
+    //device 4
+    Hashtable<String, String> cap4 = new Hashtable<String, String>();
+		cap4.put("os", "windows");
+    caps.add(cap4);
+
+    for (Hashtable<String, String> cap : caps) {
+      Thread thread = new Thread(new ParallelTest(cap, "session name"));
+      thread.start();
+    }
+	}
+}

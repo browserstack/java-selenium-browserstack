@@ -15,8 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.browserstack.local.Local;
 
 public class JavaLocalSample {
-  public static final String AUTOMATE_USERNAME = "rutvikchandla_2MEern";
-  public static final String AUTOMATE_ACCESS_KEY = "AXHzyg34Qr81Nep231pu";
+  public static final String AUTOMATE_USERNAME = "BROWSERSTACK_USERNAME";
+  public static final String AUTOMATE_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
 public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
 public static void main(String[] args) throws Exception {
 	DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -66,4 +66,4 @@ public static void markTestStatus(String status, String reason, WebDriver driver
  final JavascriptExecutor jse = (JavascriptExecutor) driver;
  jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \""+ status + "\", \"reason\": \"" + reason + "\"}}");
 }
-} 
+}
