@@ -1,43 +1,32 @@
-## <b> java-browserstack </b>
-
-A base language repo for working with selenium and browserstack.
-
+# Java-selenium-browserstack
 ---
-### <b> Branch: </b> <br/>
-Master -> Selenium 3 code snippets<br/>
-Selenium-4 -> Selenium 4 code snippets
-
----
-<b>Folder Structure:</b> <br />
-
-```
-src/
-    - test/java/com/browserstack/app
-        - JavaSample.java (For single test)
-        - JavaLocal.java (For testing local website / bs-local setup)
-        - JavaParallel.java (For testing multiple sessions)
-```
 
 ## Prerequisite
-IDE for java - preferably Eclipse. <br>
-Go over browserstack java IDE installation steps. <br>
-https://www.browserstack.com/docs/automate/selenium/getting-started/java#prerequisites
+Make sure `maven` is installed in your system. See if it is properly installed.
 
-## Steps to run test session
-1. Install dependecies
 ```
-mvn compile 
+mvn --version
 ```
 
-2. Change configuration of capabilites and use your Browserstack credentials <br>
-For running single test session, navigate to JavaSample.java
+## Steps to run test
+
+In every test file (JavaSample, JavaLocalSample, JavaParallelSample) make sure you set your credentials.
+```java
+  public static final String AUTOMATE_USERNAME = "BROWSERSTACK_USERNAME";
+  public static final String AUTOMATE_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
+```
+
+1. Clone and navigate to the repo.
+
+```
+  git clone https://github.com/browserstack/java-selenium-browserstack.git
+  cd java-selenium-browserstack
+```
+
+2. Change capabilities of test.
 
 ```java
-  // Use your browserstack credentials here
-  public static final String AUTOMATE_USERNAME = "";
-  public static final String AUTOMATE_ACCESS_KEY = "";
-  
-  // Change capabilities if you wish
+  DesiredCapabilities caps = new DesiredCapabilities();
   caps.setCapability("browserName", "iPhone");
   caps.setCapability("device", "iPhone 11");
   caps.setCapability("realMobile", "true");
@@ -47,6 +36,26 @@ For running single test session, navigate to JavaSample.java
   caps.setCapability("build", "BStack Build Number 1"); // CI/CD job or build name
 ```
 
-3. Run test session
-Use Eclipse's run to start the session<br>
-![image](https://user-images.githubusercontent.com/97675949/158067972-61b24364-79b8-44a8-aab3-cb05e1039ecf.png)
+## Build and run test using maven.
+
+### Install Dependencies using maven.
+```
+mvn install
+```
+
+### Run tests using maven.
+
+a. To run single test session.
+```
+  mvn -Dexec.mainClass="com.browserstack.app.JavaSample" -Dexec.classpathScope=test test-compile exec:java
+```
+
+b. To run parallel test session.
+```
+  mvn -Dexec.mainClass="com.browserstack.app.JavaParallelSample" -Dexec.classpathScope=test test-compile exec:java
+```
+
+c. To run local test session.
+```
+  mvn -Dexec.mainClass="com.browserstack.app.JavaLocalSample" -Dexec.classpathScope=test test-compile exec:java
+```
