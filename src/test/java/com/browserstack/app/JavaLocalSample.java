@@ -36,7 +36,7 @@ Local bsLocal = new Local();
 
 // You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
 HashMap<String, String> bsLocalArgs = new HashMap<String, String>();
-bsLocalArgs.put("key", AUTOMATE_ACCESS_KEY);
+bsLocalArgs.put("key", "AXHzyg34Qr81Nep231pu");
 
 // Starts the Local instance with the required arguments
 bsLocal.start(bsLocalArgs);
