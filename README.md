@@ -26,14 +26,14 @@ In every test file (JavaSample, JavaLocalSample, JavaParallelSample) make sure y
 2. Change capabilities of test.
 
 ```java
-  DesiredCapabilities caps = new DesiredCapabilities();
-  caps.setCapability("browserName", "iPhone");
-  caps.setCapability("device", "iPhone 11");
-  caps.setCapability("realMobile", "true");
-  caps.setCapability("local", "true");
-  caps.setCapability("os_version", "14.0");
-  caps.setCapability("name", "BStack-[Java] Sample Test"); // test name
-  caps.setCapability("build", "BStack Build Number 1"); // CI/CD job or build name
+  HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+  browserstackOptions.put("os", "OS X");
+  browserstackOptions.put("osVersion", "Sierra");
+  browserstackOptions.put("local", "false");
+  browserstackOptions.put("seleniumVersion", "4.0.0");
+  capabilities.setCapability("bstack:options", browserstackOptions);
+  capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
+  capabilities.setCapability("buildName", "BStack Build Number 1"); // CI/CD job or build name
 ```
 
 ## Build and run test using maven.
