@@ -26,14 +26,14 @@ In every test file (JavaSample, JavaLocalSample, JavaParallelSample) make sure y
 2. Change capabilities of test.
 
 ```java
-    HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
-    browserstackOptions.put("os", "OS X");
-    browserstackOptions.put("osVersion", "Sierra");
-    browserstackOptions.put("local", "false");
-    browserstackOptions.put("seleniumVersion", "4.0.0");
-    capabilities.setCapability("bstack:options", browserstackOptions);
-    capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
-    capabilities.setCapability("buildName", "BStack Build Number 1"); // CI/CD job or build name
+HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+browserstackOptions.put("os", "OS X");
+browserstackOptions.put("osVersion", "Sierra");
+browserstackOptions.put("local", "false");
+browserstackOptions.put("seleniumVersion", "4.0.0");
+browserstackOptions.put("sessionName", "BStack-[Java] Sample Test"); // test name
+browserstackOptions.put("buildName", "BStack Build Number 1"); // CI/CD job or build name
+capabilities.setCapability("bstack:options", browserstackOptions);
 ```
 
 ## Steps to run local test (using Java SDK)
@@ -79,15 +79,15 @@ mvn install
 
 a. To run single test session.
 ```
-   mvn exec:exec -P sample-test 
+mvn exec:exec -P sample-test 
 ```
 
 b. To run parallel test session.
 ```
-   mvn exec:exec -P sample-parallel-test 
+mvn exec:exec -P sample-parallel-test 
 ```
 
 c. To run local test session.
 ```
- mvn exec:exec -P sample-local-test 
+mvn exec:exec -P sample-local-test 
 ```

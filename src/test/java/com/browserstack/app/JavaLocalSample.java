@@ -27,9 +27,9 @@ public class JavaLocalSample {
         browserstackOptions.put("os", "OS X");
         browserstackOptions.put("osVersion", "Sierra");
         browserstackOptions.put("seleniumVersion", "4.0.0");
+        browserstackOptions.put("sessionName", "BStack-[Java] Sample Test"); // test name
+        browserstackOptions.put("buildName", "BStack Local Build Number 1"); // CI/CD job or build name
         capabilities.setCapability("bstack:options", browserstackOptions);
-        capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
-        capabilities.setCapability("buildName", "BStack Local Build Number 1"); // CI/CD job or build name
 
         final WebDriver driver = new RemoteWebDriver(new URL(URL), capabilities);
         try {
