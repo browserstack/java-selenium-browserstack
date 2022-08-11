@@ -26,15 +26,47 @@ In every test file (JavaSample, JavaLocalSample, JavaParallelSample) make sure y
 2. Change capabilities of test.
 
 ```java
-  HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
-  browserstackOptions.put("os", "OS X");
-  browserstackOptions.put("osVersion", "Sierra");
-  browserstackOptions.put("local", "false");
-  browserstackOptions.put("seleniumVersion", "4.0.0");
-  capabilities.setCapability("bstack:options", browserstackOptions);
-  capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
-  capabilities.setCapability("buildName", "BStack Build Number 1"); // CI/CD job or build name
+    HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+        browserstackOptions.put("os", "OS X");
+        browserstackOptions.put("osVersion", "Sierra");
+        browserstackOptions.put("local", "false");
+        browserstackOptions.put("seleniumVersion", "4.0.0");
+        capabilities.setCapability("bstack:options", browserstackOptions);
+        capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
+        capabilities.setCapability("buildName", "BStack Build Number 1"); // CI/CD job or build name
 ```
+
+## Steps to run local test (using Java SDK)
+1. Add `browserstack.sdk.version` property in `<properties>` tag.
+    ```
+   <properties>
+        <browserstack.sdk.version>1.0.5</browserstack.sdk.version>
+   </properties>
+    ```
+
+2. Add `browserstack-java-sdk` in your `pom.xml` as below.
+    ```
+    <dependency>
+        <groupId>com.browserstack</groupId>
+        <artifactId>browserstack-java-sdk</artifactId>
+        <version>${browserstack.sdk.version}</version>
+        <scope>compile</scope>
+    </dependency>
+   ```
+
+3. Modify `exec-maven-plugin` in the profile by adding `browserstack-java-sdk` as an `<argument>`.
+    ```
+   <configuration>
+        <classpathScope>test</classpathScope>
+        <executable>java</executable>
+        <arguments>
+        <argument>-classpath</argument>
+        <classpath/>
+        <argument>-javaagent:${settings.localRepository}/com/browserstack/browserstack-java-sdk/${browserstack.sdk.version}/browserstack-java-sdk-${browserstack.sdk.version}.jar</argument>
+        <argument>com.browserstack.app.JavaLocalSample</argument>
+        </arguments>
+    </configuration>
+   ```
 
 ## Build and run test using maven.
 
@@ -47,15 +79,15 @@ mvn install
 
 a. To run single test session.
 ```
-  mvn -Dexec.mainClass="com.browserstack.app.JavaSample" -Dexec.classpathScope=test test-compile exec:java
+   mvn exec:exec -P sample-test 
 ```
 
 b. To run parallel test session.
 ```
-  mvn -Dexec.mainClass="com.browserstack.app.JavaParallelSample" -Dexec.classpathScope=test test-compile exec:java
+   mvn exec:exec -P sample-parallel-test 
 ```
 
 c. To run local test session.
 ```
-  mvn -Dexec.mainClass="com.browserstack.app.JavaLocalSample" -Dexec.classpathScope=test test-compile exec:java
+ mvn exec:exec -P sample-local-test 
 ```

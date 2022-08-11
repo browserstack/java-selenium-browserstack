@@ -1,0 +1,34 @@
+# =============================
+# Set BrowserStack Credentials
+# =============================
+# Add your BrowserStack userName and accessKey here or set BROWSERSTACK_USERNAME and
+# BROWSERSTACK_ACCESS_KEY as env variables
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_USERNAME
+
+# ======================
+# Organizing your tests
+# ======================
+# Use `projectName`, `buildName`, `name` capabilities to organise your tests
+# `name` is the name of your test sessions and is automatically picked from your
+# test name and doesn't need to be set manually when using BrowserStack SDK
+# `buildName` is used to name your CI/CD job or the execution of your test suite.
+# Ensure you add a dynamic identifier, like an incremental build number from your
+# CI/CD or timestamp at the end of every build; otherwise tests from different
+# executions will be grouped together on BrowserStack
+buildName: browserstack-build-1
+# Use `projectName` to set the name of your project. Example, Marketing Website
+projectName: BrowserStack Samples
+
+# ==========================================
+# BrowserStack Local
+# (For localhost, staging/private websites)
+# ==========================================
+# Set browserStackLocal to true if your website under test is not accessible publicly over the internet
+# Learn more about how BrowserStack Local works here -> https://www.browserstack.com/docs/automate/selenium/local-testing-introduction
+browserstackLocal: true # <boolean> (Default true)
+  #browserStackLocalOptions:
+#   Options to be passed to BrowserStack local in-case of advanced configurations
+#  - localIdentifier: browserStackSDK # <string> (Default: null) Needed if you need to run multiple instances of local.
+#  - forceLocal: true  # <boolean> (Default: false) Set to true if you need to resolve all your traffic via BrowserStack Local tunnel.
+# Entire list of arguments available here -> https://www.browserstack.com/docs/automate/selenium/manage-incoming-connections

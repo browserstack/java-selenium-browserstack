@@ -1,7 +1,6 @@
 package com.browserstack.app;
 
 //Sample test in Java to run Automate session.
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -14,7 +13,6 @@ import java.util.HashMap;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import com.browserstack.local.Local;
 
 public class JavaLocalSample {
     public static final String AUTOMATE_USERNAME = System.getenv("BROWSERSTACK_USERNAME") != null ? System.getenv("BROWSERSTACK_USERNAME") : "BROWSERSTACK_USERNAME";
@@ -28,24 +26,10 @@ public class JavaLocalSample {
         HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
         browserstackOptions.put("os", "OS X");
         browserstackOptions.put("osVersion", "Sierra");
-        browserstackOptions.put("local", "true");
         browserstackOptions.put("seleniumVersion", "4.0.0");
         capabilities.setCapability("bstack:options", browserstackOptions);
         capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
         capabilities.setCapability("buildName", "BStack Local Build Number 1"); // CI/CD job or build name
-
-//Creates an instance of Local
-        Local bsLocal = new Local();
-
-// You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
-        HashMap<String, String> bsLocalArgs = new HashMap<String, String>();
-        bsLocalArgs.put("key", AUTOMATE_ACCESS_KEY);
-
-// Starts the Local instance with the required arguments
-        bsLocal.start(bsLocalArgs);
-
-// Check if BrowserStack local instance is running
-        System.out.println(bsLocal.isRunning());
 
         final WebDriver driver = new RemoteWebDriver(new URL(URL), capabilities);
         try {
@@ -60,8 +44,6 @@ public class JavaLocalSample {
         } catch (Exception e) {
             markTestStatus("failed", "Could'nt connect the local", driver);
         }
-        //Stop the Local instance
-        bsLocal.stop();
         driver.quit();
     }
 
