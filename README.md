@@ -40,7 +40,7 @@ In every test file (JavaSample, JavaLocalSample, JavaParallelSample) make sure y
 1. Add `browserstack.sdk.version` property in `<properties>` tag.
     ```
    <properties>
-        <browserstack.sdk.version>1.0.5</browserstack.sdk.version>
+        <browserstack.sdk.version>1.0.6</browserstack.sdk.version>
    </properties>
     ```
 
