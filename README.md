@@ -27,13 +27,13 @@ In every test file (JavaSample, JavaLocalSample, JavaParallelSample) make sure y
 
 ```java
     HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
-        browserstackOptions.put("os", "OS X");
-        browserstackOptions.put("osVersion", "Sierra");
-        browserstackOptions.put("local", "false");
-        browserstackOptions.put("seleniumVersion", "4.0.0");
-        capabilities.setCapability("bstack:options", browserstackOptions);
-        capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
-        capabilities.setCapability("buildName", "BStack Build Number 1"); // CI/CD job or build name
+    browserstackOptions.put("os", "OS X");
+    browserstackOptions.put("osVersion", "Sierra");
+    browserstackOptions.put("local", "false");
+    browserstackOptions.put("seleniumVersion", "4.0.0");
+    capabilities.setCapability("bstack:options", browserstackOptions);
+    capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
+    capabilities.setCapability("buildName", "BStack Build Number 1"); // CI/CD job or build name
 ```
 
 ## Steps to run local test (using Java SDK)
