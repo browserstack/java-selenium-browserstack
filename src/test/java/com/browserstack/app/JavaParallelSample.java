@@ -19,10 +19,10 @@ class ParallelTest implements Runnable {
     public static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME") != null ? System.getenv("BROWSERSTACK_USERNAME") : "BROWSERSTACK_USERNAME";
     public static final String AUTOMATE_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY") != null ? System.getenv("BROWSERSTACK_ACCESS_KEY") : "BROWSERSTACK_ACCESS_KEY";
     public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
-    Hashtable<String, String> capsHashtable;
+    HashMap<String, String> capsHashtable;
     String sessionName;
 
-    ParallelTest(Hashtable<String, String> cap, String sessionString) {
+    ParallelTest(HashMap<String, String> cap, String sessionString) {
         capsHashtable = cap;
         sessionName = sessionString;
     }
@@ -67,31 +67,31 @@ class ParallelTest implements Runnable {
 
 public class JavaParallelSample {
     public static void main(String[] args) throws Exception {
-        List<Hashtable<String, String>> caps = new ArrayList<Hashtable<String, String>>();
+        List<HashMap<String, String>> caps = new ArrayList<HashMap<String, String>>();
 
         //device 1
-        Hashtable<String, String> cap1 = new Hashtable<String, String>();
+        HashMap<String, String> cap1 = new  HashMap<String, String>();
         cap1.put("deviceName", "iPhone 12 Pro");
         cap1.put("realMobile", "true");
         caps.add(cap1);
 
         //device 2
-        Hashtable<String, String> cap2 = new Hashtable<String, String>();
+        HashMap<String, String> cap2 = new HashMap<String, String>();
         cap2.put("deviceName", "Samsung Galaxy S20");
         cap2.put("realMobile", "true");
         caps.add(cap2);
 
         //device 3
-        Hashtable<String, String> cap3 = new Hashtable<String, String>();
+        HashMap<String, String> cap3 = new HashMap<String, String>();
         cap3.put("os", "OS X");
         caps.add(cap3);
 
         //device 4
-        Hashtable<String, String> cap4 = new Hashtable<String, String>();
+        HashMap<String, String> cap4 = new HashMap<String, String>();
         cap4.put("os", "windows");
         caps.add(cap4);
 
-        for (Hashtable<String, String> cap : caps) {
+        for (HashMap<String, String> cap : caps) {
             Thread thread = new Thread(new ParallelTest(cap, "session name"));
             thread.start();
         }
