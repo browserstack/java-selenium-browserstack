@@ -68,6 +68,61 @@ In every test file (JavaSample, JavaLocalSample, JavaParallelSample) make sure y
     </configuration>
    ```
 
+### Arguments
+
+For the full list of arguments that can be passed in `browserStackLocalOptions`, refer [BrowserStack Local modifiers](https://www.browserstack.com/docs/local-testing/binary-params). For examples, refer below -
+
+#### Verbose Logging
+To enable verbose logging -
+```java
+browserStackLocalOptions:
+  - v: true
+```
+
+#### Force Start
+To kill other running Browserstack Local instances -
+```java
+browserStackLocalOptions:
+  - force: true
+```
+
+#### Only Automate
+To disable local testing for Live and Screenshots, and enable only Automate -
+```java
+browserStackLocalOptions:
+  - onlyAutomate: true
+```
+
+#### Force Local
+To route all traffic via local(your) machine -
+```java
+browserStackLocalOptions:
+  - forcelocal: true
+```
+
+#### Proxy
+To use a proxy for local testing -
+
+* proxyHost: Hostname/IP of proxy, remaining proxy options are ignored if this option is absent
+* proxyPort: Port for the proxy, defaults to 3128 when -proxyHost is used
+* proxyUser: Username for connecting to proxy (Basic Auth Only)
+* proxyPass: Password for USERNAME, will be ignored if USERNAME is empty or not specified
+
+```java
+browserStackLocalOptions:
+  - proxyHost: 127.0.0.1
+  - proxyPort: 8000
+  - proxyUser: user
+  - proxyPass: password
+```
+
+#### Local Identifier
+If doing simultaneous multiple local testing connections, set this uniquely for different processes -
+```java
+browserStackLocalOptions:
+  - localIdentifier: randomstring
+```
+
 ## Build and run test using maven.
 
 ### Install Dependencies using maven.
