@@ -42,7 +42,7 @@ public class JavaLocalSample {
                 markTestStatus("passed", "Local Test is successful and up and running", driver);
             }
         } catch (Exception e) {
-            markTestStatus("failed", "Could'nt connect the local", driver);
+            markTestStatus("failed", "Couldn't connect the local", driver);
         }
         driver.quit();
     }
