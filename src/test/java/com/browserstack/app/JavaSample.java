@@ -2,6 +2,7 @@ package com.browserstack.app;
 
 //Sample test in Java to run Automate session.
 
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +11,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.JavascriptExecutor;
 
 import java.net.URL;
-import java.time.Duration;
 import java.util.HashMap;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,8 +20,7 @@ public class JavaSample {
     public static final String AUTOMATE_USERNAME = System.getenv("BROWSERSTACK_USERNAME") != null ? System.getenv("BROWSERSTACK_USERNAME") : "BROWSERSTACK_USERNAME";
     public static final String AUTOMATE_ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY") != null ? System.getenv("BROWSERSTACK_ACCESS_KEY") : "BROWSERSTACK_ACCESS_KEY";
     public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
-
-    public static void main(String[] args) throws Exception {
+    public void test() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName", "Chrome");
         capabilities.setCapability("browserVersion", "latest");
@@ -36,7 +35,7 @@ public class JavaSample {
         final WebDriver driver = new RemoteWebDriver(new URL(URL), capabilities);
         try {
             driver.get("https://bstackdemo.com/");
-            final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            final WebDriverWait wait = new WebDriverWait(driver, 10);
             wait.until(ExpectedConditions.titleIs("StackDemo"));
             // getting name of the product
             String product_name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\'1\']/p"))).getText();
