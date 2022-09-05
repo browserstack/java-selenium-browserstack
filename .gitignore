@@ -3,3 +3,7 @@ target/
 browserstack.err
 .idea/
 logs/
+/bin/
+.classpath
+.project
+.settings

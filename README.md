@@ -10,7 +10,7 @@ mvn --version
 
 ## Steps to run test
 
-In every test file (JavaSample, JavaLocalSample, JavaParallelSample) make sure you set your credentials.
+In every test file (JavaSample, JavaLocalSample) make sure you set your credentials.
 ```java
   public static final String AUTOMATE_USERNAME = "BROWSERSTACK_USERNAME";
   public static final String AUTOMATE_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
