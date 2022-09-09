@@ -39,12 +39,12 @@ mvn install
 
 a. To run single test session.
 ```
-mvn exec:exec -Dexec.executable="java" -Dexec.classpathScope=test -Dexec.args="-cp %classpath -javaagent:/path/to/browserstack-java-sdk-jar com.browserstack.app.JavaSample"
+mvn exec:exec -Dexec.executable="java" -Dexec.classpathScope=test -Dexec.args="-cp %classpath -javaagent:/path/to/.m2/repository/browserstack-java-sdk/jar com.browserstack.app.JavaSample"
 ```
 
 b. To run local test session.
 ```
-mvn exec:exec -Dexec.executable="java" -Dexec.classpathScope=test -Dexec.args="-cp %classpath -javaagent:/path/to/browserstack-java-sdk-jar com.browserstack.app.JavaLocalSample"
+mvn exec:exec -Dexec.executable="java" -Dexec.classpathScope=test -Dexec.args="-cp %classpath -javaagent:/path/to/.m2/repository/browserstack-java-sdk/jar com.browserstack.app.JavaLocalSample"
 ```
 
 ### Arguments
