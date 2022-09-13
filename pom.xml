@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <browserstack.sdk.version>1.0.6</browserstack.sdk.version>
+        <browserstack.sdk.version>1.0.8</browserstack.sdk.version>
     </properties>
 
     <dependencies>
@@ -32,4 +32,70 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+    <profiles>
+        <!-- To run sample-test profile, mvn exec:exec -P sample-test -->
+        <profile>
+            <id>sample-test</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>3.1.0</version>
+                            <executions>
+                                <execution>
+                                    <goals>
+                                        <goal>java</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <classpathScope>test</classpathScope>
+                                <executable>java</executable>
+                                <arguments>
+                                    <argument>-classpath</argument>
+                                    <classpath/>
+                                    <argument>-javaagent:${settings.localRepository}/com/browserstack/browserstack-java-sdk/${browserstack.sdk.version}/browserstack-java-sdk-${browserstack.sdk.version}.jar</argument>
+                                    <argument>com.browserstack.app.JavaSample</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <!-- To run sample-local-test profile, mvn exec:exec -P sample-local-test -->
+            <id>sample-local-test</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>3.1.0</version>
+                            <executions>
+                                <execution>
+                                    <goals>
+                                        <goal>java</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <classpathScope>test</classpathScope>
+                                <executable>java</executable>
+                                <arguments>
+                                    <argument>-classpath</argument>
+                                    <classpath/>
+                                    <argument>-javaagent:${settings.localRepository}/com/browserstack/browserstack-java-sdk/${browserstack.sdk.version}/browserstack-java-sdk-${browserstack.sdk.version}.jar</argument>
+                                    <argument>com.browserstack.app.JavaLocalSample</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
 </project>

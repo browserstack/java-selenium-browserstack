@@ -43,6 +43,7 @@ mvn exec:exec -Dexec.executable="java" -Dexec.classpathScope=test -Dexec.args="-
 ```
 
 b. To run local test session.
+- Ensure that you have set `browserstackLocal: true` in your `browserstack.yml` config.
 ```
 mvn exec:exec -Dexec.executable="java" -Dexec.classpathScope=test -Dexec.args="-cp %classpath -javaagent:/path/to/.m2/repository/browserstack-java-sdk/jar com.browserstack.app.JavaLocalSample"
 ```
