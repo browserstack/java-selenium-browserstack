@@ -8,33 +8,25 @@ Make sure `maven` is installed in your system. See if it is properly installed.
 mvn --version
 ```
 
-## Steps to run test
-
-In every test file (JavaSample, JavaLocalSample, JavaParallelSample) make sure you set your credentials.
-```java
-  public static final String AUTOMATE_USERNAME = "BROWSERSTACK_USERNAME";
-  public static final String AUTOMATE_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
-```
+## Steps to run local test (using Java SDK)
 
 1. Clone and navigate to the repo.
+   ```
+   git clone -b sdk https://github.com/browserstack/java-selenium-browserstack.git
+   cd java-selenium-browserstack
+   ```
 
-```
-  git clone https://github.com/browserstack/java-selenium-browserstack.git
-  cd java-selenium-browserstack
-```
+2. Set your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings) in [browserstack.yml](browserstack.yml)
 
-2. Change capabilities of test.
-
-```java
-  HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
-  browserstackOptions.put("os", "OS X");
-  browserstackOptions.put("osVersion", "Sierra");
-  browserstackOptions.put("local", "false");
-  browserstackOptions.put("seleniumVersion", "4.0.0");
-  capabilities.setCapability("bstack:options", browserstackOptions);
-  capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
-  capabilities.setCapability("buildName", "BStack Build Number 1"); // CI/CD job or build name
-```
+3. Add `browserstack-java-sdk` in your `pom.xml` as below.
+    ```
+    <dependency>
+        <groupId>com.browserstack</groupId>
+        <artifactId>browserstack-java-sdk</artifactId>
+        <version>LATEST</version>
+        <scope>compile</scope>
+    </dependency>
+   ```
 
 ## Build and run test using maven.
 
@@ -47,15 +39,51 @@ mvn install
 
 a. To run single test session.
 ```
-  mvn -Dexec.mainClass="com.browserstack.app.JavaSample" -Dexec.classpathScope=test test-compile exec:java
+mvn exec:exec -Dexec.executable="java" -Dexec.classpathScope=test -Dexec.args="-cp %classpath -javaagent:/path/to/.m2/repository/browserstack-java-sdk/jar com.browserstack.app.JavaSample"
 ```
 
-b. To run parallel test session.
+b. To run local test session.
+- Ensure that you have set `browserstackLocal: true` in your `browserstack.yml` config.
 ```
-  mvn -Dexec.mainClass="com.browserstack.app.JavaParallelSample" -Dexec.classpathScope=test test-compile exec:java
+mvn exec:exec -Dexec.executable="java" -Dexec.classpathScope=test -Dexec.args="-cp %classpath -javaagent:/path/to/.m2/repository/browserstack-java-sdk/jar com.browserstack.app.JavaLocalSample"
 ```
 
-c. To run local test session.
+### Arguments
+
+For the full list of arguments that can be passed in `browserStackLocalOptions`, refer [BrowserStack Local modifiers](https://www.browserstack.com/docs/local-testing/binary-params). For examples, refer below -
+
+#### Verbose Logging
+To enable verbose logging -
+```java
+browserStackLocalOptions:
+  v: true
+  logFile: /browserstack/logs.txt
 ```
-  mvn -Dexec.mainClass="com.browserstack.app.JavaLocalSample" -Dexec.classpathScope=test test-compile exec:java
+
+#### Force Start
+To kill other running Browserstack Local instances -
+```java
+browserStackLocalOptions:
+  force: true
+```
+
+#### Only Automate
+To disable local testing for Live and Screenshots, and enable only Automate -
+```java
+browserStackLocalOptions:
+  onlyAutomate: true
+```
+
+#### Force Local
+To route all traffic via local(your) machine -
+```java
+browserStackLocalOptions:
+  forcelocal: true
+```
+
+#### Local Identifier
+If doing simultaneous multiple local testing connections, set this uniquely for different processes -
+```java
+browserStackLocalOptions:
+  localIdentifier: randomstring
 ```

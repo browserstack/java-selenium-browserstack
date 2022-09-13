@@ -2,3 +2,8 @@ target/
 .vscode
 browserstack.err
 .idea/
+logs/
+/bin/
+.classpath
+.project
+.settings
