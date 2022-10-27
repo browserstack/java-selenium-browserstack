@@ -30,9 +30,10 @@ public class JavaSample {
         browserstackOptions.put("osVersion", "Sierra");
         browserstackOptions.put("local", "false");
         browserstackOptions.put("seleniumVersion", "4.0.0");
+        browserstackOptions.put("source","java-selenium:sample-main:v1.0");
         capabilities.setCapability("bstack:options", browserstackOptions);
-        capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
-        capabilities.setCapability("buildName", "BStack Build Number 1"); // CI/CD job or build name
+        capabilities.setCapability("sessionName", "BStack single java-selenium"); // test name
+        capabilities.setCapability("buildName", "browserstack-build-1"); // CI/CD job or build name
         final WebDriver driver = new RemoteWebDriver(new URL(URL), capabilities);
         try {
             driver.get("https://bstackdemo.com/");
