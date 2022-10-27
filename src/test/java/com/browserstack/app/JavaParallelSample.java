@@ -31,7 +31,7 @@ class ParallelTest implements Runnable {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("bstack:options", capsHashtable);
         caps.setCapability("sessionName", sessionName); // test name
-        caps.setCapability("buildName", "BStack-[Java] Sample buildName"); // CI/CD job or build name
+        caps.setCapability("buildName", "browserstack-build-1"); // CI/CD job or build name
         WebDriver driver;
         try {
             driver = new RemoteWebDriver(new URL(URL), caps);
@@ -73,26 +73,30 @@ public class JavaParallelSample {
         Hashtable<String, String> cap1 = new Hashtable<String, String>();
         cap1.put("deviceName", "iPhone 12 Pro");
         cap1.put("realMobile", "true");
+        cap1.put("source", "java-selenium:sample-main:v1.0");
         caps.add(cap1);
 
         //device 2
         Hashtable<String, String> cap2 = new Hashtable<String, String>();
         cap2.put("deviceName", "Samsung Galaxy S20");
         cap2.put("realMobile", "true");
+        cap2.put("source", "java-selenium:sample-main:v1.0");
         caps.add(cap2);
 
         //device 3
         Hashtable<String, String> cap3 = new Hashtable<String, String>();
         cap3.put("os", "OS X");
+        cap3.put("source", "java-selenium:sample-main:v1.0");
         caps.add(cap3);
 
         //device 4
         Hashtable<String, String> cap4 = new Hashtable<String, String>();
         cap4.put("os", "windows");
+        cap4.put("source", "java-selenium:sample-main:v1.0");
         caps.add(cap4);
 
         for (Hashtable<String, String> cap : caps) {
-            Thread thread = new Thread(new ParallelTest(cap, "session name"));
+            Thread thread = new Thread(new ParallelTest(cap, "BStack parallel java-selenium"));
             thread.start();
         }
     }

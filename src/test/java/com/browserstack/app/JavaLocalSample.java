@@ -30,9 +30,10 @@ public class JavaLocalSample {
         browserstackOptions.put("osVersion", "Sierra");
         browserstackOptions.put("local", "true");
         browserstackOptions.put("seleniumVersion", "4.0.0");
+        browserstackOptions.put("source", "java-selenium:sample-main:v1.0");
         capabilities.setCapability("bstack:options", browserstackOptions);
-        capabilities.setCapability("sessionName", "BStack-[Java] Sample Test"); // test name
-        capabilities.setCapability("buildName", "BStack Local Build Number 1"); // CI/CD job or build name
+        capabilities.setCapability("sessionName", "BStack local java-selenium"); // test name
+        capabilities.setCapability("buildName", "browserstack-build-1"); // CI/CD job or build name
 
 //Creates an instance of Local
         Local bsLocal = new Local();
