@@ -26,8 +26,9 @@ public class JavaSample {
         caps.setCapability("realMobile", "true");
         caps.setCapability("local", "true");
         caps.setCapability("os_version", "14.0");
-        caps.setCapability("name", "BStack-[Java] Sample Test"); // test name
-        caps.setCapability("build", "BStack Build Number 1"); // CI/CD job or build name
+        caps.setCapability("name", "BStack single java-selenium"); // test name
+        caps.setCapability("build", "browserstack-build-1"); // CI/CD job or build name
+        caps.setCapability("browserstack.source", "java-selenium:sample-selenium-3:v1.0");
         final WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
         try {
             driver.get("https://bstackdemo.com/");
