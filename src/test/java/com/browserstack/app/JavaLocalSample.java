@@ -27,8 +27,9 @@ public class JavaLocalSample {
         caps.setCapability("browser", "Safari");
         caps.setCapability("browser_version", "10.0");
         caps.setCapability("browserstack.local", "true");
-        caps.setCapability("name", "BStack-[Java] Sample Local Test"); // test name
-        caps.setCapability("build", "BStack Build Number 1"); // CI/CD job or build name
+        caps.setCapability("name", "BStack local java-selenium"); // test name
+        caps.setCapability("build", "browserstack-build-1"); // CI/CD job or build name
+        caps.setCapability("browserstack.source", "java-selenium:sample-selenium-3:v1.0");
 
         //Creates an instance of Local
         Local bsLocal = new Local();

@@ -80,16 +80,18 @@ public class JavaParallelSample {
         Hashtable<String, String> cap1 = new Hashtable<String, String>();
         cap1.put("device", "iPhone 12 Pro");
         cap1.put("real_mobile", "true");
-        cap1.put("build", "BStack-[Java] Sample Build");
-        cap1.put("name", "Thread 1");
+        cap1.put("build", "browserstack-build-1");
+        cap1.put("name", "BStack parallel java-selenium");
+        cap1.put("browserstack.source", "java-selenium:sample-selenium-3:v1.0");
         caps.add(cap1);
 
         //device 2
         Hashtable<String, String> cap2 = new Hashtable<String, String>();
         cap2.put("device", "Samsung Galaxy S20");
         cap2.put("real_mobile", "true");
-        cap2.put("build", "BStack-[Java] Sample Build");
-        cap2.put("name", "Thread 2");
+        cap2.put("build", "browserstack-build-1");
+        cap2.put("name", "BStack parallel java-selenium");
+        cap2.put("browserstack.source", "java-selenium:sample-selenium-3:v1.0");
         caps.add(cap2);
 
         //device 3
@@ -98,8 +100,9 @@ public class JavaParallelSample {
         cap3.put("browser_version", "14");
         cap3.put("os", "OS X");
         cap3.put("os_version", "Big Sur");
-        cap3.put("build", "BStack-[Java] Sample Build");
-        cap3.put("name", "Thread 3");
+        cap3.put("build", "browserstack-build-1");
+        cap3.put("name", "BStack parallel java-selenium");
+        cap3.put("browserstack.source", "java-selenium:sample-selenium-3:v1.0");
         caps.add(cap3);
 
         //device 4
@@ -108,8 +111,9 @@ public class JavaParallelSample {
         cap4.put("browser_version", "latest");
         cap4.put("os", "OS X");
         cap4.put("os_version", "Monterey");
-        cap4.put("build", "BStack-[Java] Sample Build");
-        cap4.put("name", "Thread 4");
+        cap4.put("build", "browserstack-build-1");
+        cap4.put("name", "BStack parallel java-selenium");
+        cap4.put("browserstack.source", "java-selenium:sample-selenium-3:v1.0");
         caps.add(cap4);
 
         for (Hashtable<String, String> cap : caps) {
