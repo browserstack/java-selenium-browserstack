@@ -1,61 +1,56 @@
-# Java-selenium-browserstack
----
+# java-selenium-browserstack
+Master branch contains sdk
 
-## Prerequisite
-Make sure `maven` is installed in your system. See if it is properly installed.
+![BrowserStack Logo](https://d98b8t1nnulk5.cloudfront.net/production/images/layout/logo-header.png?1469004780)
 
-```
-mvn --version
-```
+## Using Maven
 
-## Steps to run test
+### Setup
 
-In every test file (JavaSample, JavaLocalSample, JavaParallelSample) make sure you set your credentials.
-```java
-  public static final String AUTOMATE_USERNAME = "BROWSERSTACK_USERNAME";
-  public static final String AUTOMATE_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
-```
+* Clone the repo
+* Install dependencies `mvn compile`
+* Update `*.conf.json` files inside the `src/test/resources/conf` directory with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings)
 
-1. Clone and navigate to the repo.
+### Running your tests
 
-```
-  git clone https://github.com/browserstack/java-selenium-browserstack.git
-  cd java-selenium-browserstack
-```
+- To run a single test, run `mvn test -P single`
+- To run local tests, run `mvn test -P local`
+- To run parallel tests, run `mvn test -P parallel`
+- To run the test suite, run `mvn test -P suite`
 
-2. Change capabilities of test.
+ Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
+ 
+ 
+ ## Using Gradle
+ 
+ ### Setup
 
-```java
-  DesiredCapabilities caps = new DesiredCapabilities();
-  caps.setCapability("browserName", "iPhone");
-  caps.setCapability("device", "iPhone 11");
-  caps.setCapability("realMobile", "true");
-  caps.setCapability("local", "true");
-  caps.setCapability("os_version", "14.0");
-  caps.setCapability("name", "BStack-[Java] Sample Test"); // test name
-  caps.setCapability("build", "BStack Build Number 1"); // CI/CD job or build name
-```
+* Clone the repo
+* Install dependencies `gradle build`
+* Update `*.conf.json` files inside the `src/test/resources/conf` directory with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings)
 
-## Build and run test using maven.
+### Running your tests
 
-### Install Dependencies using maven.
-```
-mvn install
-```
+- To run a single test, run `gradle singleTest`
+- To run local tests, run `gradle localTest`
+- To run parallel tests, run `gradle parallelTest`
+- To run the test suite, run `gradle suiteTest`
 
-### Run tests using maven.
+ Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
 
-a. To run single test session.
-```
-  mvn -Dexec.mainClass="com.browserstack.app.JavaSample" -Dexec.classpathScope=test test-compile exec:java
-```
 
-b. To run parallel test session.
-```
-  mvn -Dexec.mainClass="com.browserstack.app.JavaParallelSample" -Dexec.classpathScope=test test-compile exec:java
-```
+## Notes
+* You can view your test results on the [BrowserStack Automate dashboard](https://www.browserstack.com/automate)
+* To test on a different set of browsers, check out our [platform configurator](https://www.browserstack.com/automate/java#setting-os-and-browser)
+* You can export the environment variables for the Username and Access Key of your BrowserStack account
 
-c. To run local test session.
-```
-  mvn -Dexec.mainClass="com.browserstack.app.JavaLocalSample" -Dexec.classpathScope=test test-compile exec:java
-```
+  ```
+  export BROWSERSTACK_USERNAME=<browserstack-username> &&
+  export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
+  ```
+
+## Additional Resources
+* [Documentation for writing Automate test scripts in Java](https://www.browserstack.com/automate/java)
+* [Customizing your tests on BrowserStack](https://www.browserstack.com/automate/capabilities)
+* [Browsers & mobile devices for selenium testing on BrowserStack](https://www.browserstack.com/list-of-browsers-and-platforms?product=automate)
+* [Using REST API to access information about your tests via the command-line interface](https://www.browserstack.com/automate/rest-api)
