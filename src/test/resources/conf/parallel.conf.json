@@ -1,0 +1,29 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "BROWSERSTACK_USERNAME",
+  "key": "BROWSERSTACK_ACCESS_KEY",
+
+  "capabilities": {
+    "bstack:options": {
+      "buildName": "browserstack-build-1",
+      "sessionName": "BStack parallel java-selenium",
+      "browserVersion": "latest",
+      "debug": true
+    }
+  },
+
+  "environments": {
+    "env1": {
+        "browserName": "chrome"
+    },
+    "env2": {
+        "browserName": "firefox"
+    },
+    "env3": {
+      "bstack:options": {
+        "os": "OS X"
+      },
+      "browserName": "safari"
+    }
+  }
+}
