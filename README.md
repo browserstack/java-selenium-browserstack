@@ -1,7 +1,5 @@
 # java-selenium-browserstack
-Master branch contains sdk.
-
-Master branch contains **Selenium 4** samples, for **Selenium 3 - JSON Wire Protocol** please checkout [selenium-3](https://github.com/browserstack/testng-browserstack/tree/selenium-3) branch
+This branch contains testNG samples with selenium-4.
 
 ![BrowserStack Logo](https://d98b8t1nnulk5.cloudfront.net/production/images/layout/logo-header.png?1469004780)
 
