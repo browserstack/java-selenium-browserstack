@@ -1,5 +1,5 @@
 # java-selenium-browserstack
-Master branch contains sdk
+Master branch contains testng with browserstack-java-sdk.
 
 ![BrowserStack Logo](https://d98b8t1nnulk5.cloudfront.net/production/images/layout/logo-header.png?1469004780)
 
