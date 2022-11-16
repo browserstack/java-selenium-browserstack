@@ -1,4 +1,4 @@
-# java-selenium-browserstack
+# Java-selenium-browserstack
 ---
 This branch contains testNG samples with selenium-4.
 
