@@ -8,8 +8,7 @@
       "buildName": "browserstack-build-1",
       "sessionName": "BStack parallel java-selenium",
       "browserVersion": "latest",
-      "debug": true,
-      "local": true
+      "debug": true
     }
   },
 
