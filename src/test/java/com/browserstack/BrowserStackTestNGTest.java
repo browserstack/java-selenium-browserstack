@@ -60,7 +60,7 @@ public class BrowserStackTestNGTest {
         config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserstack.source", "java-selenium:sample-selenium-3:v1.0");
+        capabilities.setCapability("browserstack.source", "java-selenium:sample-selenium-3:v1.1");
 
         Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
         Iterator it = envCapabilities.entrySet().iterator();
