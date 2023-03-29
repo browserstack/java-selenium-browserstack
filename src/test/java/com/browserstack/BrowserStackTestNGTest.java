@@ -93,7 +93,7 @@ public class BrowserStackTestNGTest {
                 options.put("key", accessKey);
                 l.start(options);
             }
-            bstackOptionsMap.put("source", "java-selenium:sample-selenium-4:v1.0");
+            bstackOptionsMap.put("source", "java-selenium:sample-selenium-4:v1.1");
         }
 
         driver = new RemoteWebDriver(
